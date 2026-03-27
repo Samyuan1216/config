@@ -1,0 +1,21 @@
+{
+	"Print to console": {
+		"scope": "cpp",
+		"prefix": "inv1",
+		"body": [
+			"auto get_inv = [&](int n)",
+			"{",
+			"    auto inv = std::vector<mint>(n + 1);",
+			"    ",
+			"    inv[1] = 1;",
+			"    for (int i = 2; i <= n; ++i)",
+			"    {",
+			"        inv[i] = mod - inv[mod % i] * (mod / i);",
+			"    }",
+			"",
+			"    return inv;",
+			"};"
+		],
+		"description": "1~n递推求逆元"
+	}
+}

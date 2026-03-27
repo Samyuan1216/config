@@ -1,0 +1,18 @@
+{
+	"Print to console": {
+		"scope": "cpp",
+		"prefix": "base_convertion",
+		"body": [
+			"auto get = [](int s, int bit, int BASE)",
+			"{",
+			"    return s / bit % BASE;",
+			"};",
+			"",
+			"auto set = [&](int s, int bit, int v, int BASE)",
+			"{",
+			"    return s - get(s, bit, BASE) * bit + v * bit;",
+			"};"
+		],
+		"description": "进制转换"
+	}
+}

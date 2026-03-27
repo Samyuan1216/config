@@ -1,0 +1,26 @@
+{
+	"Print to console": {
+		"scope": "cpp",
+		"prefix": "bs4",
+		"body": [
+			"auto find = [&](auto l, auto r)",
+			"{",
+			"    for (int i = 0; i <= 60; ++i)",
+			"    {",
+			"        auto mid = std::midpoint(l, r);",
+			"        if (check(mid))",
+			"        {",
+			"            r = mid;",
+			"        }",
+			"        else",
+			"        {",
+			"            l = mid;",
+			"        }",
+			"    }",
+			"",
+			"    return r; ",
+			"};"
+		],
+		"description": "二分搜索（实数向左）"
+	}
+}

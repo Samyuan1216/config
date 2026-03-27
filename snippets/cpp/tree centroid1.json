@@ -1,0 +1,34 @@
+{
+	"Print to console": {
+		"scope": "cpp",
+		"prefix": "tree_centroid1",
+		"body": [
+			"auto size = std::vector<int>(n + 1);",
+			"int best = lim<int>::max(), center;",
+			"auto tree_centroid = [&](auto &&self, int u, int f) -> void",
+			"{",
+			"    size[u] = 1;",
+			"",
+			"    int maxsub = 0;",
+			"    for (auto &v: g[u])",
+			"    {",
+			"        if (v != f)",
+			"        {",
+			"            self(self, v, u);",
+			"",
+			"            size[u] += size[v];",
+			"            maxsub = std::max(maxsub, size[v]);",
+			"        }",
+			"    }",
+			"",
+			"    maxsub = std::max(maxsub, n - size[u]);",
+			"    if (maxsub < best)",
+			"    {",
+			"        best = maxsub;",
+			"        center = u;",
+			"    }",
+			"};"
+		],
+		"description": "树的重心1"
+	}
+}

@@ -1,0 +1,39 @@
+{
+	"Print to console": {
+		"scope": "cpp",
+		"prefix": "kmp_next",
+		"body": [
+			"auto next_array = [&](std::string &str)",
+			"{",
+			"    int n = str.length();",
+			"    if (n == 1)",
+			"    {",
+			"        return std::vector<int>{-1};",
+			"    }",
+			"",
+			"    auto next = std::vector<int>(n);",
+			"    next[0] = -1;",
+			"",
+			"    int i = 2, m = 0;",
+			"    while (i < n)",
+			"    {",
+			"        if (str[i - 1] == str[m])",
+			"        {",
+			"            next[i++] = ++m;",
+			"        }",
+			"        else if (m > 0)",
+			"        {",
+			"            m = next[m];",
+			"        }",
+			"        else",
+			"        {",
+			"            next[i++] = 0;",
+			"        }",
+			"    }",
+			"",
+			"    return next;",
+			"};"
+		],
+		"description": "kmp_next数组构建"
+	}
+}

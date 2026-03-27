@@ -1,0 +1,34 @@
+{
+	"Print to console": {
+		"scope": "cpp",
+		"prefix": "zarray",
+		"body": [
+			"auto z_array = [&](std::string &str)",
+			"{",
+			"    int n = str.length();",
+			"    auto z = std::vector<int>(n);",
+			"    z[0] = n;",
+			"",
+			"    for (int i = 1, c = 1, r = 1, len; i < n; ++i)",
+			"    {",
+			"        len = (r > i? std::min(r - i, z[i - c]): 0);",
+			"        while (i + len < n && str[i + len] == str[len])",
+			"        {",
+			"            len++;",
+			"        }",
+			"",
+			"        if (i + len > r)",
+			"        {",
+			"            r = i + len;",
+			"            c = i;",
+			"        }",
+			"",
+			"        z[i] = len;",
+			"    }",
+			"",
+			"    return z;",
+			"};"
+		],
+		"description": "z数组"
+	}
+}

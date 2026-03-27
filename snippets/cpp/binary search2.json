@@ -1,0 +1,28 @@
+{
+	"Print to console": {
+		"scope": "cpp",
+		"prefix": "bs2",
+		"body": [
+			"auto find = [&](auto l, auto r)",
+			"{",
+			"    std::optional<decltype(l)> ans;",
+			"    while (l <= r)",
+			"    {",
+			"        auto mid = std::midpoint(l, r);",
+			"        if (check(mid))",
+			"        {",
+			"            ans = mid;",
+			"            r = mid - 1;",
+			"        }",
+			"        else",
+			"        {",
+			"            l = mid + 1;",
+			"        }",
+			"    }",
+			"",
+			"    return ans;",
+			"};"
+		],
+		"description": "二分搜索（整数向左）"
+	}
+}

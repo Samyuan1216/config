@@ -1,0 +1,30 @@
+{
+	"Print to console": {
+		"scope": "cpp",
+		"prefix": "tree_diameter2",
+		"body": [
+            "int diameter = 0;",
+			"auto dist = std::vector<int>(n + 1);",
+			"auto tree_diameter = [&](auto &&self, int u, int f) -> void",
+			"{",
+			"    for (auto &[v, w]: g[u])",
+			"    {",
+			"        if (v != f)",
+			"        {",
+			"            self(self, v, u);",
+			"        }",
+			"    }",
+			"",
+			"    for (auto &[v, w]: g[u])",
+			"    {",
+			"        if (v != f)",
+			"        {",
+			"            diameter = std::max(diameter, dist[u] + dist[v] + w);",
+			"            dist[u] = std::max(dist[u], dist[v] + w);",
+			"        }",
+			"    }",
+			"};"
+		],
+		"description": "树的直径2"
+	}
+}

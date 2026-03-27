@@ -1,0 +1,29 @@
+{
+	"Print to console": {
+		"scope": "cpp",
+		"prefix": "kruskal",
+		"body": [
+			"auto edges = std::vector(m, std::array<int, 3>());",
+			"auto kruskal = [&]()",
+			"{",
+			"    DSU set(n);",
+			"    ranges::sort(edges);",
+			"",
+			"    int sum = 0, cnt = 0;",
+			"    for (auto &[w, u, v]: edges)",
+			"    {",
+			"        if (!set.same(u, v))",
+			"        {",
+			"            set.merge(u, v);",
+			"",
+			"            ++cnt;",
+			"            sum += w;",
+			"        }",
+			"    }",
+			"",
+			"    return (cnt == n - 1? std::optional(sum): std::nullopt);",
+			"};"
+		],
+		"description": "kruskal"
+	}
+}

@@ -1,0 +1,13 @@
+{
+	"Print to console": {
+		"scope": "cpp",
+		"prefix": "euclidean_dist",
+		"body": [
+			"auto euclidean_dist = [&](int a, int b, int x, int y)",
+			"{",
+			"    return std::sqrt(std::pow(x - a, 2) + std::pow(y - b, 2));",
+			"};"
+		],
+		"description": "欧式距离"
+	}
+}

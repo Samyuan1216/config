@@ -1,0 +1,37 @@
+{
+	"Print to console": {
+		"scope": "cpp",
+		"prefix": "digit_dp",
+		"body": [
+			"auto dp = std::vector(n, std::vector(2, std::vector(2, std::vector(2, -1))));",
+			"auto digit_dp = [&](auto &&self, int i, bool limit_low, bool limit_high, bool is_num) -> int",
+			"{",
+			"    if (i == n)",
+			"    {",
+			"        return (is_num? 1: 0);",
+			"    }",
+			"",
+			"    if (dp[i][limit_low][limit_high][is_num] != -1)",
+			"    {",
+			"        return dp[i][limit_low][limit_high][is_num];",
+			"    }",
+			"",
+			"    int ans = 0;",
+			"    if (!is_num && low[i] == '0')",
+			"    {",
+			"        ans += self(self, i + 1, true, false, false);",
+			"    }",
+			"",
+			"    int lo = (limit_low? (low[i] - '0'): 0), hi = (limit_high? (high[i] - '9'): 0), d0 = (is_num? 0: 1);",
+			"    for (int i = std::min(lo, d0); i <= hi; ++i)",
+			"    {",
+			"        ans += self(self, i + 1, limit_low && i == lo, limit_high && i == hi);",
+			"    }",
+			"",
+			"    dp[i][limit_low][limit_high][is_num] = ans;",
+			"    return ans;",
+			"};"
+		],
+		"description": "数位dp"
+	}
+}

@@ -1,0 +1,11 @@
+{
+	"Print to console": {
+		"scope": "cpp",
+		"prefix": "priority_queue",
+		"body": [
+			"template<typename T = int, typename Cmp = std::less<T>>",
+			"using pq = std::priority_queue<T, std::vector<T>, Cmp>;"
+		],
+		"description": "优先队列"
+	}
+}

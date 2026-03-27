@@ -1,0 +1,32 @@
+{
+	"Print to console": {
+		"scope": "cpp",
+		"prefix": "floyd",
+		"body": [
+			"auto floyd = [&](int n)",
+			"{",
+			"    for (int k = 1; k <= n; ++k)",
+			"    {",
+			"        for (int i = 1; i <= n; ++i)",
+			"        {",
+			"            if (g[i][k] == lim<int>::max())",
+			"            {",
+			"                continue;",
+			"            }",
+			"",
+			"            for (int j = 1; j <= n; ++j)",
+			"            {",
+			"                if (g[k][j] == lim<int>::max())",
+			"                {",
+			"                    continue;",
+			"                }",
+			"",
+			"                g[i][j] = std::min(g[i][j], g[i][k] + g[k][j]);",
+			"            }",
+			"        }",
+			"    }",
+			"};"
+		],
+		"description": "floyd"
+	}
+}

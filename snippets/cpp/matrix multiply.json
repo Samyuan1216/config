@@ -1,0 +1,27 @@
+{
+	"Print to console": {
+		"scope": "cpp",
+		"prefix": "matrix_multiply",
+		"body": [
+			"auto mat_mul = [](auto &&a, auto &&b)",
+			"{",
+			"    int n = a.size(), t = a[0].size(), m = b[0].size();",
+			"    auto ans = std::vector(n, std::vector<int>(m));",
+			"",
+			"    for (int i = 0; i < n; ++i)",
+			"    {",
+			"        for (int k = 0; k < t; ++k)",
+			"        {",
+			"            auto aik =  a[i][k];",
+			"            for (int j = 0; j < m; ++j)",
+			"            {",
+			"                ans[i][j] += aik * b[k][j];",
+			"            }",
+			"        }",
+			"    }",
+			"",
+			"    return ans;",
+			"};"
+		],
+		"description": "矩阵乘" }
+}

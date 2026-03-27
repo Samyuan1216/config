@@ -1,0 +1,39 @@
+{
+	"Print to console": {
+		"scope": "cpp",
+		"prefix": "manacher",
+		"body": [
+			"auto manacher = [&](std::string &str, char init = '#')",
+			"{",
+			"    int n = str.length() * 2 + 1;",
+			"    auto ss = std::string(n, init);",
+			"",
+			"    for (int i = 1; i < n; i += 2)",
+			"    {",
+			"        ss[i] = str[i / 2];",
+			"    }",
+			"",
+			"    auto p = std::vector<int>(n);",
+			"    for (int i = 0, c = 0, r = 0, len; i < n; ++i)",
+			"    {",
+			"        len = (r > i? std::min(p[2 * c - i], r - i): 1);",
+			"        while (i + len < n && i - len >= 0 && ss[i + len] == ss[i - len])",
+			"        {",
+			"            len++;",
+			"        }",
+			"",
+			"        if (i + len > r)",
+			"        {",
+			"            r = i + len;",
+			"            c = i;",
+			"        }",
+			"",
+			"        p[i] = len;",
+			"    }",
+			"",
+			"    return p;",
+			"};"
+		],
+		"description": "manacher"
+	}
+}

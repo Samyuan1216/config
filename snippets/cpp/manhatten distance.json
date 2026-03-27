@@ -1,0 +1,13 @@
+{
+	"Print to console": {
+		"scope": "cpp",
+		"prefix": "manhattan_dist",
+		"body": [
+			"auto manhattan_dist = [&](int a, int b, int x, int y)",
+			"{",
+			"    return std::abs(x - a) + std::abs(y - b);",
+			"};"
+		],
+		"description": "曼哈顿距离"
+	}
+}

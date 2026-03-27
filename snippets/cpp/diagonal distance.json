@@ -1,0 +1,13 @@
+{
+	"Print to console": {
+		"scope": "cpp",
+		"prefix": "diagonal_dist",
+		"body": [
+			"auto diagonal_dist = [&](int a, int b, int x, int y)",
+			"{",
+			"    return std::max(std::abs(x - a), std::abs(y - b));",
+			"};"
+		],
+		"description": "对角线距离"
+	}
+}

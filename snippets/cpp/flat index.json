@@ -1,0 +1,20 @@
+{
+	"Print to console": {
+		"scope": "cpp",
+		"prefix": "flat_index",
+		"body": [
+			"auto flat_index = [](auto ...D)",
+			"{",
+			"    return [=](auto ...i)",
+			"    {",
+			"        int idx = 0;",
+			"        ((idx = idx * D + i), ...);",
+			"",
+			"        return idx;",
+			"    };",
+			"};",
+			"auto idx = flat_index(n);"
+		],
+		"description": "扁平化数组下标"
+	}
+}

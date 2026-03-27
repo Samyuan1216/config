@@ -1,0 +1,40 @@
+{
+	"Print to console": {
+		"scope": "cpp",
+		"prefix": "prim",
+		"body": [
+			"auto prim = [&]()",
+			"{",
+			"    auto heap = pq<std::pair<int, int>, std::greater<>>();",
+			"    heap.emplace(0, 1);",
+			"",
+			"    auto visited = std::vector<bool>(n + 1);",
+			"",
+            "    int sum = 0, cnt = 0;",
+			"    while (!heap.empty())",
+			"    {",
+			"        auto [w, u] = heap.top();",
+			"        heap.pop();",
+			"",
+			"        if (!visited[u])",
+			"        {",
+			"            visited[u] = true;",
+			"            sum += w;",
+            "            ++cnt;",
+			"",
+			"            for (auto &[v, vw]: g[u])",
+			"            {",
+            "                if (!visited[v])",
+            "                {",
+			"                    heap.emplace(vw, v);",
+            "                }",
+			"            }",
+			"        }",
+			"    }",
+			"",
+			"    return (cnt == n? std::optional(sum): std::nullopt);",
+			"};"
+		],
+		"description": "最小生成树"
+	}
+}
