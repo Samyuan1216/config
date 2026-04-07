@@ -1,17 +1,17 @@
 {
 	"Print to console": {
 		"scope": "cpp",
-		"prefix": "bellman_ford",
+		"prefix": "Bellman_Ford1",
 		"body": [
-			"auto bellman_ford = [&](int s)",
+			"auto bellman_ford = [&](int s) -> std::optional<std::vector<int>>",
 			"{",
-			"    auto dist = std::vector(n + 1, lim<int>::max());",
+			"    auto dist = std::vector(n, lim<int>::max());",
 			"    dist[s] = 0;",
 			"",
 			"    for (int i = 1; i < n; ++i)",
 			"    {",
 			"        bool update = false;",
-			"        for (int u = 1; u <= n; ++u)",
+			"        for (int u = 0; u < n; ++u)",
 			"        {",
 			"            for (auto &[v, w]: g[u])",
 			"            {",
@@ -29,7 +29,7 @@
 			"        }",
 			"    }",
 			"",
-			"    for (int u = 1; u <= n; ++u)",
+			"    for (int u = 0; u < n; ++u)",
 			"    {",
 			"        for (auto &[v, w]: g[u])",
 			"        {",
@@ -40,9 +40,9 @@
 			"        }",
 			"    }",
 			"",
-			"    return std::optional(dist);",
+			"    return dist;",
 			"};"
 		],
-		"description": "bellman_ford"
+		"description": "Bellman-Ford(Adjacency List)"
 	}
 }

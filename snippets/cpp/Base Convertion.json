@@ -1,14 +1,14 @@
 {
 	"Print to console": {
 		"scope": "cpp",
-		"prefix": "base_convertion",
+		"prefix": "Base_Convertion",
 		"body": [
-			"auto get = [](int s, int bit, int BASE)",
+			"auto get = [](int s, int bit, int BASE) -> int",
 			"{",
 			"    return s / bit % BASE;",
 			"};",
 			"",
-			"auto set = [&](int s, int bit, int v, int BASE)",
+			"auto set = [&](int s, int bit, int v, int BASE) -> int",
 			"{",
 			"    return s - get(s, bit, BASE) * bit + v * bit;",
 			"};"

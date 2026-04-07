@@ -1,9 +1,9 @@
 {
 	"Print to console": {
 		"scope": "cpp",
-		"prefix": "inv2",
+		"prefix": "Inv2",
 		"body": [
-			"auto power = [&](mint x, int n)",
+			"auto power = [&](mint x, int n) -> mint",
 			"{",
 			"    mint ans = 1;",
 			"    while (n > 0)",
@@ -20,7 +20,7 @@
 			"    return ans;",
 			"};",
 			"",
-			"auto get_fact = [&](int n)",
+			"auto get_fact = [&](int n) -> std::vector<mint>",
 			"{",
 			"    auto fac = std::vector<mint>(n + 1);",
 			"",
@@ -33,7 +33,7 @@
 			"    return fac;",
 			"};",
 			"",
-			"auto get_inv = [&](int n)",
+			"auto get_inv = [&](int n) -> std::vector<mint>",
 			"{",
 			"    auto inv = std::vector<mint>(n + 1);",
 			"",

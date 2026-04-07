@@ -1,9 +1,9 @@
 {
 	"Binary Search Universal": {
 		"scope": "cpp",
-		"prefix": "bs",
+		"prefix": "BS",
 		"body": [
-			"auto find = [&](auto l, auto r, bool find_first = true)",
+			"auto find = [&](auto l, auto r, bool find_first = true) -> std::optional<decltype(l)>",
 			"{",
 			"    std::optional<decltype(l)> ans;",
 			"    while (l <= r)",

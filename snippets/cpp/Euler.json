@@ -1,9 +1,9 @@
 {
 	"Print to console": {
 		"scope": "cpp",
-		"prefix": "euler",
+		"prefix": "Euler",
 		"body": [
-			"auto euler = [&](int n)",
+			"auto euler = [&](int n) -> std::vector<int>",
 			"{",
 			"    auto visited = std::vector<bool>(n + 1);",
 			"    auto prime = std::vector<int>(n / 2 + 1);",

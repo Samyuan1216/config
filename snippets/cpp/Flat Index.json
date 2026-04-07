@@ -1,11 +1,11 @@
 {
 	"Print to console": {
 		"scope": "cpp",
-		"prefix": "flat_index",
+		"prefix": "Flat_index",
 		"body": [
-			"auto flat_index = [](auto ...D)",
+			"auto flat_index = [](auto ...D) -> int",
 			"{",
-			"    return [=](auto ...i)",
+			"    return [=](auto ...i) -> int",
 			"    {",
 			"        int idx = 0;",
 			"        ((idx = idx * D + i), ...);",

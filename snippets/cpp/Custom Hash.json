@@ -1,7 +1,7 @@
 {
 	"Print to console": {
 		"scope": "cpp",
-		"prefix": "custom_hash",
+		"prefix": "Custom_Hash",
 		"body": [
 			"class custom_hash",
 			"{",

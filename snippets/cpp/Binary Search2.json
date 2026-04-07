@@ -3,7 +3,7 @@
 		"scope": "cpp",
 		"prefix": "bs_real",
 		"body": [
-			"auto find = [&](auto l, auto r, bool find_first = true)",
+			"auto find = [&](auto l, auto r, bool find_first = true) -> std::optional<decltype(l)>",
 			"{",
 			"    for (int i = 0; i <= 60; ++i)",
 			"    {",

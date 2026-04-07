@@ -1,9 +1,9 @@
 {
 	"Print to console": {
 		"scope": "cpp",
-		"prefix": "fact",
+		"prefix": "Fact",
 		"body": [
-			"auto get_fact = [&](int n)",
+			"auto get_fact = [&](int n) -> std::vector<int>",
 			"{",
 			"    auto fac = std::vector<int>(n + 1);",
 			"",

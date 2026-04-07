@@ -1,9 +1,9 @@
 {
 	"Print to console": {
 		"scope": "cpp",
-		"prefix": "diagonal_dist",
+		"prefix": "Diagonal_Dist",
 		"body": [
-			"auto diagonal_dist = [&](int a, int b, int x, int y)",
+			"auto diagonal_dist = [&](int a, int b, int x, int y) -> int",
 			"{",
 			"    return std::max(std::abs(x - a), std::abs(y - b));",
 			"};"

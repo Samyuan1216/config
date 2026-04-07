@@ -1,7 +1,7 @@
 {
 	"Print to console": {
 		"scope": "cpp",
-		"prefix": "dsu",
+		"prefix": "DSU",
 		"body": [
 			"class DSU",
 			"{",
@@ -9,16 +9,12 @@
 			"public:",
 			"    DSU(int n): father(n + 1), size(n + 1, 1)",
 			"    {",
-            "        ranges::iota(father, 0);",
+			"        ranges::iota(father, 0);",
 			"    }",
 			"",
 			"    int find(int i)",
 			"    {",
-			"        if (i != father[i])",
-			"        {",
-			"            father[i] = find(father[i]);",
-			"        }",
-			"",
+			"        father[i] = (father[i] == i? i: find(father[i]));",
 			"        return father[i];",
 			"    }",
 			"",

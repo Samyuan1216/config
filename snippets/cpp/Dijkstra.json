@@ -1,14 +1,15 @@
 {
 	"Print to console": {
 		"scope": "cpp",
-		"prefix": "dijkstra",
+		"prefix": "Dijkstra",
 		"body": [
-			"auto dijkstra = [&](int n, int s)",
+			"auto dijkstra = [&](int n, int s) -> std::vector<int>",
 			"{",
-			"    auto heap = pq<std::pair<int, int>, std::greater<>>();",
+            "    using pq = std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, std::greater<>>;",
+			"    auto heap = pq();",
 			"",
-			"    auto dist = std::vector(n + 1, lim<int>::max());",
-			"    auto visited = std::vector<bool>(n + 1);",
+			"    auto dist = std::vector(n, lim<int>::max());",
+			"    auto visited = std::vector<bool>(n);",
 			"",
 			"    dist[s] = T{};",
 			"    heap.emplace(dist[s], s);",

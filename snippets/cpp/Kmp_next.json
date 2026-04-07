@@ -1,9 +1,9 @@
 {
 	"Print to console": {
 		"scope": "cpp",
-		"prefix": "kmp_next",
+		"prefix": "Kmp_next",
 		"body": [
-			"auto next_array = [&](std::string &str)",
+			"auto next_array = [&](std::string &str) -> std::vector<int>",
 			"{",
 			"    int n = str.length();",
 			"    if (n == 1)",

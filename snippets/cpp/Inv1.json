@@ -1,9 +1,9 @@
 {
 	"Print to console": {
 		"scope": "cpp",
-		"prefix": "inv1",
+		"prefix": "Inv1",
 		"body": [
-			"auto get_inv = [&](int n)",
+			"auto get_inv = [&](int n) -> std::vector<mint>",
 			"{",
 			"    auto inv = std::vector<mint>(n + 1);",
 			"    ",

@@ -1,10 +1,10 @@
 {
 	"Print to console": {
 		"scope": "cpp",
-		"prefix": "kruskal",
+		"prefix": "Kruskal",
 		"body": [
 			"auto edges = std::vector(m, std::array<int, 3>());",
-			"auto kruskal = [&]()",
+			"auto kruskal = [&]() -> std::optional<int>",
 			"{",
 			"    DSU set(n);",
 			"    ranges::sort(edges);",

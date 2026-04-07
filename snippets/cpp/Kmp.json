@@ -1,9 +1,9 @@
 {
 	"Print to console": {
 		"scope": "cpp",
-		"prefix": "kmp",
+		"prefix": "Kmp",
 		"body": [
-			"auto next_array = [&](std::string &str)",
+			"auto next_array = [&](std::string &str) -> std::vector<int>",
 			"{",
 			"    int n = str.length();",
 			"    if (n == 1)",
@@ -34,7 +34,7 @@
 			"    return next;",
 			"};",
 			"",
-			"auto kmp = [&](std::string &str1, std::string &str2)",
+			"auto kmp = [&](std::string &str1, std::string &str2) -> std::optional<int>",
 			"{",
 			"    int n = str1.length(), m = str2.length(), x = 0, y = 0;",
 			"    auto next = next_array(str2);",

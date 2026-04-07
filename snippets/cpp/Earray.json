@@ -1,9 +1,9 @@
 {
 	"Print to console": {
 		"scope": "cpp",
-		"prefix": "e_array",
+		"prefix": "E_array",
 		"body": [
-			"auto z_array = [&](std::string &str)",
+			"auto z_array = [&](std::string &str) -> std::vector<int>",
 			"{",
 			"    int n = str.length();",
 			"    auto z = std::vector<int>(n);",
@@ -29,7 +29,7 @@
 			"    return z;",
 			"};",
 			"",
-			"auto e_array = [&](std::string &str1, std::string &str2, auto &z)",
+			"auto e_array = [&](std::string &str1, std::string &str2, auto &z) -> std::vector<int>",
 			"{",
 			"    int n = str1.length(), m = str2.length();",
 			"    auto e = std::vector<int>(n);",
