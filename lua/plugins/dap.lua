@@ -25,6 +25,7 @@ return {
             local dapui = require("dapui")
 
             dapui.setup({
+                wrap = true,
                 icons = { expanded = "▾", collapsed = "▸", current_frame = "▸" },
                 mappings = {
                     expand = { "<CR>", "<2-LeftMouse>" },
@@ -113,32 +114,51 @@ return {
                 }
             }
 
-            -- ===== 新增：C++ 调试运行配置 =====
+            -- ===== 开始：C++ 调试运行配置 =====
             dap.configurations.cpp = {
                 {
-                    name = "Debug zsy.out (带文件重定向)",
+                    name = "Debug 当前文件 (配合相对目录 .cp_data)",
                     type = "cppdbg",
                     request = "launch",
 
-                    -- 1. 指定要调试的程序绝对路径 (当前工作区/zsy.out)
+                    -- 1. 指定要调试的程序：当前代码目录下的 .cp_data 文件夹中
                     program = function()
-                        return vim.fn.getcwd() .. "/zsy.out"
+                        -- 动态获取当前文件目录，并在里面寻找 .cp_data/文件名.out
+                        local cp_dir = vim.fn.expand("%:p:h") .. "/.cp_data"
+                        local exe_path = cp_dir .. "/" .. vim.fn.expand("%:t:r") .. ".out"
+
+                        if vim.fn.filereadable(exe_path) == 0 then
+                            vim.notify("未找到可执行文件: " .. exe_path .. "\n请先运行 <leader>ca 编译", vim.log.levels.ERROR)
+                            return nil
+                        end
+                        return exe_path
                     end,
 
-                    -- 2. 指定工作目录为当前工作区根目录
+                    -- 2. 指定工作目录为当前代码所在的文件夹
                     cwd = function()
-                        return vim.fn.getcwd()
+                        return vim.fn.expand("%:p:h")
                     end,
 
-                    -- 3. 设置输入输出重定向
-                    -- 在 Ubuntu (Linux) 下，GDB 会通过 Shell 启动程序，
-                    -- 因此它能正确识别 "<", ">", "2>" 这样的重定向符号
+                    -- 3. 动态设置输入输出重定向，去 .cp_data 里读取
                     args = function()
-                        local cwd = vim.fn.getcwd()
+                        local cp_dir = vim.fn.expand("%:p:h") .. "/.cp_data"
+                        local tc_num = vim.fn.input("输入要调试的测试用例编号 (默认 0): ")
+                        if tc_num == "" then tc_num = "0" end
+
+                        local base_name = vim.fn.expand("%:t:r")
+                        -- 拼接 .cp_data 下的输入输出文件路径
+                        local input_file = cp_dir .. "/" .. base_name .. "_input" .. tc_num .. ".txt"
+                        local output_file = cp_dir .. "/" .. base_name .. "_debug_out.txt"
+                        local error_file = cp_dir .. "/" .. base_name .. "_debug_err.log"
+
+                        if vim.fn.filereadable(input_file) == 0 then
+                            vim.notify("\n找不到测试用例文件: " .. input_file, vim.log.levels.WARN)
+                        end
+
                         return {
-                            "<", cwd .. "/in.txt",
-                            ">", cwd .. "/out.txt",
-                            "2>", cwd .. "/debug.log"
+                            "<", input_file,
+                            ">", output_file,
+                            "2>", error_file
                         }
                     end,
 
@@ -153,7 +173,6 @@ return {
                 },
             }
 
-            -- 让 C 语言也直接复用 C++ 的配置
             dap.configurations.c = dap.configurations.cpp
             -- ===== 结束：C++ 调试运行配置 =====
         end,
