@@ -4,8 +4,9 @@
 		"prefix": "Seg_Tree",
 		"body": [
 			"template<class Info, class Tag>",
-			"class Seg_Tree",
+			"struct Seg_Tree",
 			"{",
+            "private:",
 			"    int n;",
 			"    std::vector<Info> info;",
 			"    std::vector<Tag> tag;",

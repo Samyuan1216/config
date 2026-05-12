@@ -49,7 +49,7 @@ return {
     opts = {
         -- 将编译的输出重定向到同级目录下的 .cp_data 中
         compile_command = {
-            cpp = { exec = "g++", args = { "-std=c++23", "-Wall", "-Werror", "-g", "-O2", "$(FNAME)", "-o", ".cp_data/$(FNOEXT).out" } },
+            cpp = { exec = "g++", args = { "-std=c++23", "-Wall", "-Werror", "-g", "$(FNAME)", "-o", ".cp_data/$(FNOEXT).out" } },
         },
         -- 运行指令去 .cp_data 中找
         run_command = {

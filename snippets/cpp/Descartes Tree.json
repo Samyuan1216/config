@@ -4,10 +4,9 @@
 		"prefix": "Descartes_Tree",
 		"body": [
 			"template<typename T = int, typename Cmp = std::less<T>>",
-			"class Descartes_Tree",
+			"struct Descartes_Tree",
 			"{",
 			"    Cmp compare;",
-			"public:",
 			"    const std::vector<T> &arr;",
 			"    std::vector<int> left;",
 			"    std::vector<int> right;",

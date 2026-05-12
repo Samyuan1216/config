@@ -4,7 +4,7 @@
 		"prefix": "FHQ_Treap2",
 		"body": [
 			"template<typename T = int, typename F = std::less_equal<T>>",
-			"class FHQ_Treap",
+			"struct FHQ_Treap",
 			"{",
 			"    struct Node",
 			"    {",
@@ -114,7 +114,7 @@
 			"            return r;",
 			"        }",
 			"    }",
-			"public:",
+            "",
 			"    FHQ_Treap(int n)",
 			"    {",
 			"        tr.reserve((n + 1) * 100);",

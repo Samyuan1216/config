@@ -4,7 +4,7 @@
 		"prefix": "BIT",
 		"body": [
 			"template<typename T = int, typename F = std::plus<T>>",
-			"class BIT",
+			"struct BIT",
 			"{",
 			"private:",
 			"    int n;",
