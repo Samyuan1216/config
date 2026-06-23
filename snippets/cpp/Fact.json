@@ -5,7 +5,7 @@
 		"body": [
 			"auto get_fact = [&](int n) -> std::vector<int>",
 			"{",
-			"    auto fac = std::vector<int>(n + 1);",
+			"    std::vector<int> fact(n + 1);",
 			"",
 			"    fac[0] = fac[1] = 1;",
 			"    for (int i = 2; i <= n; ++i)",

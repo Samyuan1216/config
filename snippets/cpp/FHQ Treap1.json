@@ -26,7 +26,7 @@
 			"    int new_node(const T &num)",
 			"    {",
 			"        int i = tr.size();",
-			"        tr.emplace_back(num, 0, 0, 1, dis(gen));",
+			"        tr.push_back({num, 0, 0, 1, dis(gen)});",
 			"",
 			"        return i;",
 			"    }",
@@ -105,7 +105,7 @@
             "",
 			"    FHQ_Treap()",
 			"    {",
-			"        tr.emplace_back();",
+			"        tr.push_back();",
 			"    }",
 			"};"
 		],

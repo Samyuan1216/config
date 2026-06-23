@@ -38,11 +38,8 @@ return {
       cmd = {
         "clangd",
         "--background-index",
-        "--suggest-missing-includes",
         "--clang-tidy",   -- 启用 clang-tidy
-        "--clang-tidy-checks=clang-analyzer-*,-misc-unused-*,-clang-diagnostic-unused-*", -- 禁用未使用相关检查
-        -- 让 clangd 使用系统 gcc 获取头文件信息（需安装 gcc）
-        "--query-driver=/usr/bin/gcc,/usr/bin/g++",
+        "--clang-tidy-checks=clang-analyzer-*,-misc-unused-*,-clang-diagnostic-unused-*",
       },
       init_options = {
         fallbackFlags = {

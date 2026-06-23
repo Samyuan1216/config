@@ -5,7 +5,6 @@
 		"body": [
 			"struct custom_hash",
 			"{",
-            "private:",
 			"    using u64 = uint64_t;",
 			"    static u64 splitmix64(u64 x)",
 			"    {",
@@ -21,7 +20,7 @@
 			"        static const u64 FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();",
 			"        return FIXED_RANDOM;",
 			"    }",
-			"public:",
+			"",
 			"    template<std::integral T>",
 			"    size_t operator()(T x) const",
 			"    {",

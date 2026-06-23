@@ -42,6 +42,9 @@ vim.opt.formatoptions:remove({ "c", "r", "o" })
 vim.opt.cursorline = true -- 开启光标行高亮（可以只高亮行号）
 vim.opt.cursorlineopt = "number" -- 只高亮行号，而不是整行
 
+-- 限制 LSP 日志级别，避免 stderr 信息刷满日志文件
+vim.lsp.log_level = vim.log.levels.WARN
+
 -- 全局 LSP 诊断配置
 vim.diagnostic.config({
   signs = false, -- ❌ 左侧 gutter 不显示 E/W
@@ -66,16 +69,16 @@ vim.g.loaded_netrw = 1
 -- 禁止加载 netrw 的 plugin 层
 vim.g.loaded_netrwPlugin = 1
 
--- 定义函数并使用 vim.cmd 执行 Vimscript
-vim.cmd([[
-function! OpenMarkdownPreview(url)
-  let edge_path = '/mnt/c/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'
-  let cmd = 'silent !"' . edge_path . '" --app=' . shellescape(a:url, 1) . ' --new-window &'
-  execute cmd
-endfunction
-]])
-
--- 设置插件变量
-vim.g.mkdp_browserfunc = 'OpenMarkdownPreview'
-vim.g.mkdp_auto_close = 0
+-- 定义函数并使用 vim.cmd 执行 Vimscript
+vim.cmd([[
+function! OpenMarkdownPreview(url)
+  let edge_path = '/mnt/c/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'
+  let cmd = 'silent !"' . edge_path . '" --app=' . shellescape(a:url, 1) . ' --new-window &'
+  execute cmd
+endfunction
+]])
+
+-- 设置插件变量
+vim.g.mkdp_browserfunc = 'OpenMarkdownPreview'
+vim.g.mkdp_auto_close = 0
 vim.g.mkdp_echo_preview_url = 1

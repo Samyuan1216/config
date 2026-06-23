@@ -5,14 +5,13 @@
 		"body": [
 			"auto dijkstra = [&](int n, int s) -> std::vector<int>",
 			"{",
-            "    std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, std::greater<>> heap;",
-			"",
-			"    auto dist = std::vector(n, lim<int>::max());",
-			"    auto visited = std::vector<bool>(n);",
-			"",
+			"    std::vector<int> dist(n, 1e9);",
 			"    dist[s] = 0;",
-			"    heap.emplace(dist[s], s);",
 			"",
+			"    std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, std::greater<>> heap;",
+			"    heap.push({dist[s], s});",
+			"",
+			"    std::vector<bool> visited(n);",
 			"    while (!heap.empty())",
 			"    {",
 			"        auto [wu, u] = heap.top();",
@@ -31,7 +30,7 @@
 			"                if (dist[v] - wv > wu)",
 			"                {",
 			"                    dist[v] = wu + wv;",
-			"                    heap.emplace(dist[v], v);",
+			"                    heap.push({dist[v], v});",
 			"                }",
 			"            }",
 			"        }",
@@ -40,6 +39,7 @@
 			"    return dist;",
 			"};"
 		],
-		"description": "dijkstra"
+		"description": "Dijkstra"
 	}
 }
+

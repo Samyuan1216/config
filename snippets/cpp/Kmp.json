@@ -11,7 +11,7 @@
 			"        return std::vector<int>{-1};",
 			"    }",
 			"",
-			"    auto next = std::vector<int>(n);",
+			"    std::vector<int> next(n);",
 			"    next[0] = -1;",
 			"",
 			"    int i = 2, m = 0;",
