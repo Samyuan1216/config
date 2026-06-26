@@ -118,16 +118,6 @@
 			"",
 			"        return times;",
 			"    }",
-			"",
-			"    bool is_alert(int i)",
-			"    {",
-			"        return alert[i];",
-			"    }",
-			"",
-			"    int get(int u, int c)",
-			"    {",
-			"        return tree[u][c];",
-			"    }",
 			"};"
 		],
 		"description": "AC自动机"

@@ -44,7 +44,8 @@ return {
       init_options = {
         fallbackFlags = {
           -- 移除 Windows 目标，只保留 C++23 标准
-          "-std=c++23"
+          "-std=gnu++23",
+          "-Wno-vla-cxx-extension",
         }
       },
       filetypes = { "c", "cpp", "objc", "objcpp", "cc" },
@@ -53,6 +54,22 @@ return {
       on_attach = on_attach,         -- 你的 on_attach 函数
     }
     vim.lsp.enable("clangd")
+
+    -- ⭐ 核心魔法：拦截并过滤掉指定的 LSP 诊断错误
+    local orig_publish_diagnostics = vim.lsp.handlers["textDocument/publishDiagnostics"]
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
+    if result and result.diagnostics then
+      local filtered = {}
+      for _, diagnostic in ipairs(result.diagnostics) do
+        -- 如果错误的 code 是这两个，直接过滤掉，不放入 Neovim 缓冲区
+        if diagnostic.code ~= "variable_object_no_init" and diagnostic.code ~= "-Wvla-cxx-extension" then
+          table.insert(filtered, diagnostic)
+        end
+      end
+      result.diagnostics = filtered
+    end
+    orig_publish_diagnostics(err, result, ctx, config)
+    end
 
       -- =================== Python ===================
       vim.lsp.config["pyright"] = {
