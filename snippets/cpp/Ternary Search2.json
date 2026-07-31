@@ -1,0 +1,27 @@
+{
+	"Ternary Search Real Universal": {
+		"scope": "cpp",
+		"prefix": "TS_Real",
+		"body": [
+			"auto find = [&](auto l, auto r, bool find_min = true) -> std::optional<decltype(l)>",
+			"{",
+			"    for (int i = 0; i <= 100; ++i)",
+			"    {",
+			"        auto m1 = l + (r - l) / 3.0;",
+			"        auto m2 = r - (r - l) / 3.0;",
+			"        if (check(m1) < check(m2))",
+			"        {",
+			"            find_min? (r = m2): (l = m1);",
+			"        }",
+			"        else",
+			"        {",
+			"            find_min? (l = m1): (r = m2);",
+			"        }",
+			"    }",
+			"",
+			"    return l;",
+			"};"
+		],
+		"description": "三分搜索 (实数域)"
+	}
+}

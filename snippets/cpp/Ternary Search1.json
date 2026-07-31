@@ -1,0 +1,40 @@
+{
+	"Print to console": {
+		"scope": "cpp",
+		"prefix": "TS",
+		"body": [
+			"auto find = [&](auto l, auto r, bool find_min = true) -> decltype(l)",
+			"{",
+			"    while (r - l >= 3)",
+			"    {",
+			"        auto m1 = l + (r - l) / 3, m2 = r - (r - l) / 3;",
+			"        if (find_min? check(m1) < check(m2): check(m1) > check(m2))",
+			"        {",
+			"            r = m2;",
+			"        }",
+			"        else",
+			"        {",
+			"            l = m1;",
+			"        }",
+			"    }",
+			"",
+			"    auto ans = l;",
+			"    auto val = check(l);",
+			"",
+			"    for (auto i = l + 1; i <= r; ++i)",
+			"    {",
+			"        auto cur = check(i);",
+			"        if (find_min? cur < val: cur > val)",
+			"        {",
+			"            ans = i;",
+			"            val = cur;",
+			"        }",
+			"    }",
+			"",
+			"    return ans;",
+			"};"
+		],
+		"description": "三分搜索（整数域）"
+	}
+}
+

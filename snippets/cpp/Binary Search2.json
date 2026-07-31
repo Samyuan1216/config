@@ -1,7 +1,7 @@
 {
 	"Binary Search Real Universal": {
 		"scope": "cpp",
-		"prefix": "bs_real",
+		"prefix": "BS_Real",
 		"body": [
 			"auto find = [&](auto l, auto r, bool find_first = true) -> std::optional<decltype(l)>",
 			"{",

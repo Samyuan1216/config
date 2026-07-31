@@ -1,0 +1,47 @@
+{
+	"Print to console": {
+		"scope": "cpp",
+		"prefix": "Basis",
+		"body": [
+			"struct Basis",
+			"{",
+			"    using u64 = unsigned long long;",
+			"    std::array<u64, 64> p{};",
+			"",
+			"    bool insert(std::integral auto x)",
+			"    {",
+			"        auto u = u64(x);",
+			"        for (int i = 63; i >= 0; --i)",
+			"        {",
+			"            if (u >> i == 1)",
+			"            {",
+			"                if (p[i] == 0)",
+			"                {",
+			"                    p[i] = u;",
+			"",
+			"                    return true;",
+			"                }",
+			"",
+			"                u ^= p[i];",
+			"            }",
+			"        }",
+			"",
+			"        return false;",
+			"    }",
+			"",
+			"    u64 query() const",
+			"    {",
+			"        u64 ans = 0;",
+			"        for (int i = 63; i >= 0; --i)",
+			"        {",
+			"            ans = std::max(ans, ans ^ p[i]);",
+			"        }",
+			"",
+			"        return ans;",
+			"    }",
+			"};"
+		],
+		"description": "普通消元线性基"
+	}
+}
+
