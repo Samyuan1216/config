@@ -241,6 +241,7 @@ return {
         { "<leader>cx", clean_current_task_data, desc = "清理当前题目的所有测试文件和exe" },
         { "<leader>cX", clean_all_cp_data, desc = "清空 .cp_data 所有题目数据" },
         { "<leader>cu", "<cmd>CompetiTest show_ui<CR>", desc = "重新打开上一次的结果面板" },
+        { "<leader>cj", function() require("customs.interactive_runner").start() end, desc = "编译并运行交互题" },
     },
     opts = {
         -- 将编译的输出重定向到同级目录下的 .cp_data 中
