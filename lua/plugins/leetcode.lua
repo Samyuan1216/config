@@ -18,7 +18,7 @@ return
 
         ---@type lc.storage
         storage = {
-            home = "/home/samyuan/code/C++/Problem/leetcode",
+            home = "/home/samyuan/code/Cpp_algorithm/Problem/leetcode",
             cache = vim.fn.stdpath("cache") .. "/leetcode",
         },
         ---@type table<string, boolean>

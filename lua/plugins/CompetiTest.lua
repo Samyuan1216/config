@@ -33,7 +33,7 @@ end
 local function contest_platform_root(task)
     local group = string.lower(tostring(task.group or ""))
     local judge = group:match("^(.-)%s+%-%s+") or group
-    local problem_root = vim.fn.expand("~/code/C++/Problem")
+    local problem_root = vim.fn.expand("~/code/Cpp_algorithm/Problem")
 
     if judge:find("atcoder", 1, true) then
         return problem_root .. "/atcoder"
