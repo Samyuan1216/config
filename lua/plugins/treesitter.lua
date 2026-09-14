@@ -5,7 +5,7 @@ return {
 
   config = function()
       require('nvim-treesitter').install {
-          'c', 'cpp', 'vim', 'vimdoc', 'query', 'markdown', 'markdown_inline', 'javascript', 'typescript', 'java', 'python', 'html', 'latex', 'yaml'
+          'c', 'cpp', 'systemverilog', 'vim', 'vimdoc', 'query', 'markdown', 'markdown_inline', 'javascript', 'typescript', 'java', 'python', 'html', 'latex', 'yaml'
       }
   end
 }

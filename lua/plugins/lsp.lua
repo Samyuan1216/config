@@ -132,7 +132,22 @@ return {
                 -- wiki = { style = "file-stem" }  -- 如果你使用 Obsidian，可能需要这行
             },
         }
-        vim.lsp.enable("marksman")
+      vim.lsp.enable("marksman")
+
+      -- =================== Verilog / SystemVerilog ===================
+      vim.lsp.config["svlangserver"] = {
+        cmd = { "svlangserver" },
+        filetypes = { "verilog", "systemverilog" },
+        root_markers = {
+          ".svlangserver",
+          "verilog.project",
+          "compile_commands.json",
+          ".git",
+        },
+        capabilities = capabilities,
+        on_attach = on_attach,
+      }
+      vim.lsp.enable("svlangserver")
 
       -- =================== lspsaga ===================
       require("lspsaga").setup({

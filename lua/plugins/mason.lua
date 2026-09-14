@@ -1,7 +1,17 @@
 return {
     "mason-org/mason-lspconfig.nvim",
     opts = {
-        ensure_installed = {"clangd", "marksman", "pyright", "lua_ls", "texlab", "cmake", "ts_ls"},
+        ensure_installed = {
+            "clangd",
+            "marksman",
+            "pyright",
+            "lua_ls",
+            "texlab",
+            "cmake",
+            "ts_ls",
+            "svlangserver",
+            "verible",
+        },
     },
     dependencies = {
         { "mason-org/mason.nvim", opts = {

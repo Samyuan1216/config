@@ -1,3 +1,13 @@
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  group = vim.api.nvim_create_augroup("SystemVerilogFiletype", {
+    clear = true,
+  }),
+  pattern = { "*.v", "*.vh", "*.sv", "*.svh" },
+  callback = function()
+    vim.bo.filetype = "systemverilog"
+  end,
+})
+
 vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("DisableCommentContinuation", {
     clear = true,
