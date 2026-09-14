@@ -1,4 +1,21 @@
 -- ~/.config/nvim/lua/plugins/competitest.lua
+local algorithm_project = require("customs.algorithm_project")
+
+local function guard(action)
+    return function(...)
+        if algorithm_project.require_current_buffer() then
+            return action(...)
+        end
+    end
+end
+
+local function run_command(command)
+    return function()
+        if algorithm_project.require_current_buffer() then
+            vim.cmd(command)
+        end
+    end
+end
 
 -- 辅助函数：清理当前文件相关的所有生成文件
 local function clean_current_task_data()
@@ -33,7 +50,7 @@ end
 local function contest_platform_root(task)
     local group = string.lower(tostring(task.group or ""))
     local judge = group:match("^(.-)%s+%-%s+") or group
-    local problem_root = vim.fn.expand("~/code/Cpp_algorithm/Problem")
+    local problem_root = algorithm_project.root .. "/Problem"
 
     if judge:find("atcoder", 1, true) then
         return problem_root .. "/atcoder"
@@ -231,17 +248,17 @@ return {
     dependencies = "MunifTanjim/nui.nvim",
     cmd = "CompetiTest",
     keys = {
-        { "<leader>ca", "<cmd>CompetiTest run<CR>", desc = "编译并运行所有测试用例" },
-        { "<leader>ci", "<cmd>CompetiTest add_testcase<CR>", desc = "添加/编辑测试用例" },
-        { "<leader>ce", "<cmd>CompetiTest edit_testcase<CR>", desc = "编辑当前测试用例" },
-        { "<leader>cd", "<cmd>CompetiTest delete_testcase<CR>", desc = "选择删除某个测试用例" },
-        { "<leader>cr", "<cmd>CompetiTest receive testcases<CR>", desc = "从浏览器接收测试用例" },
-        { "<leader>ct", receive_contest, desc = "接收整场比赛" },
-        { "<leader>cs", stop_receiving, desc = "停止接收测试用例/比赛" },
-        { "<leader>cx", clean_current_task_data, desc = "清理当前题目的所有测试文件和exe" },
-        { "<leader>cX", clean_all_cp_data, desc = "清空 .cp_data 所有题目数据" },
-        { "<leader>cu", "<cmd>CompetiTest show_ui<CR>", desc = "重新打开上一次的结果面板" },
-        { "<leader>cj", function() require("customs.interactive_runner").start() end, desc = "编译并运行交互题" },
+        { "<leader>ca", run_command("CompetiTest run"), desc = "编译并运行所有测试用例" },
+        { "<leader>ci", run_command("CompetiTest add_testcase"), desc = "添加/编辑测试用例" },
+        { "<leader>ce", run_command("CompetiTest edit_testcase"), desc = "编辑当前测试用例" },
+        { "<leader>cd", run_command("CompetiTest delete_testcase"), desc = "选择删除某个测试用例" },
+        { "<leader>cr", run_command("CompetiTest receive testcases"), desc = "从浏览器接收测试用例" },
+        { "<leader>ct", guard(receive_contest), desc = "接收整场比赛" },
+        { "<leader>cs", guard(stop_receiving), desc = "停止接收测试用例/比赛" },
+        { "<leader>cx", guard(clean_current_task_data), desc = "清理当前题目的所有测试文件和exe" },
+        { "<leader>cX", guard(clean_all_cp_data), desc = "清空 .cp_data 所有题目数据" },
+        { "<leader>cu", run_command("CompetiTest show_ui"), desc = "重新打开上一次的结果面板" },
+        { "<leader>cj", guard(function() require("customs.interactive_runner").start() end), desc = "编译并运行交互题" },
     },
     opts = {
         -- 将编译的输出重定向到同级目录下的 .cp_data 中
@@ -277,6 +294,9 @@ return {
         vim.api.nvim_create_autocmd("BufEnter", {
             pattern = "*.cpp",
             callback = function()
+                if not algorithm_project.current_buffer() then
+                    return
+                end
                 local cp_dir = vim.fn.expand("%:p:h") .. "/.cp_data"
                 if vim.fn.isdirectory(cp_dir) == 0 then
                     vim.fn.mkdir(cp_dir, "p")

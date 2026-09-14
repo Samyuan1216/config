@@ -9,20 +9,21 @@ return {
     {
         "mfussenegger/nvim-dap",
         keys = {
-            { "<leader>db", function() require("dap").toggle_breakpoint() end, desc = "Toggle Breakpoint" },
-            { "<leader>dB", function() require("dap").set_breakpoint(vim.fn.input('Condition: ')) end, desc = "Conditional Breakpoint" },
-            { "<leader>dc", function() require("dap").continue() end, desc = "Run/Continue" },
-            { "<leader>da", function() local d = require("dap"); d.continue({ before = d.continue }) end, desc = "Run with Args" },
-            { "<leader>di", function() require("dap").step_into() end, desc = "Step Into" },
-            { "<leader>do", function() require("dap").step_over() end, desc = "Step Over" },
-            { "<leader>dO", function() require("dap").step_out() end, desc = "Step Out" },
-            { "<leader>dt", function() require("dap").terminate() end, desc = "Terminate" },
+            { "<leader>db", function() if require("customs.algorithm_project").require_current_buffer() then require("dap").toggle_breakpoint() end end, desc = "Toggle Breakpoint" },
+            { "<leader>dB", function() if require("customs.algorithm_project").require_current_buffer() then require("dap").set_breakpoint(vim.fn.input('Condition: ')) end end, desc = "Conditional Breakpoint" },
+            { "<leader>dc", function() if require("customs.algorithm_project").require_current_buffer() then require("dap").continue() end end, desc = "Run/Continue" },
+            { "<leader>da", function() if require("customs.algorithm_project").require_current_buffer() then local d = require("dap"); d.continue({ before = d.continue }) end end, desc = "Run with Args" },
+            { "<leader>di", function() if require("customs.algorithm_project").require_current_buffer() then require("dap").step_into() end end, desc = "Step Into" },
+            { "<leader>do", function() if require("customs.algorithm_project").require_current_buffer() then require("dap").step_over() end end, desc = "Step Over" },
+            { "<leader>dO", function() if require("customs.algorithm_project").require_current_buffer() then require("dap").step_out() end end, desc = "Step Out" },
+            { "<leader>dt", function() if require("customs.algorithm_project").require_current_buffer() then require("dap").terminate() end end, desc = "Terminate" },
             { "<leader>du", function() require("dapui").toggle() end, desc = "Toggle UI" },
             { "<leader>de", function() require("dapui").eval() end, desc = "Evaluate", mode = { "n", "v" } },
         },
         config = function()
             local dap = require("dap")
             local dapui = require("dapui")
+
 
             dapui.setup({
                 wrap = true,
@@ -115,7 +116,7 @@ return {
             }
 
             -- ===== 开始：C++ 调试运行配置 =====
-            dap.configurations.cpp = {
+            local algorithm_cpp_configuration = {
                 {
                     name = "Debug 当前文件 (配合相对目录 .cp_data)",
                     type = "cppdbg",
@@ -173,7 +174,9 @@ return {
                 },
             }
 
-            dap.configurations.c = dap.configurations.cpp
+            dap.configurations.cpp = algorithm_cpp_configuration
+            dap.configurations.c = algorithm_cpp_configuration
+
             -- ===== 结束：C++ 调试运行配置 =====
         end,
     },

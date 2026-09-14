@@ -55,10 +55,13 @@ return {
     }
     vim.lsp.enable("clangd")
 
-    -- ⭐ 核心魔法：拦截并过滤掉指定的 LSP 诊断错误
+      -- ⭐ 核心魔法：拦截并过滤掉指定的 LSP 诊断错误
+    local algorithm_project = require("customs.algorithm_project")
     local orig_publish_diagnostics = vim.lsp.handlers["textDocument/publishDiagnostics"]
     vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
-    if result and result.diagnostics then
+    local uri = (result and result.uri) or (ctx and ctx.uri)
+    local path = uri and vim.uri_to_fname(uri) or ""
+    if result and result.diagnostics and algorithm_project.contains(path) then
       local filtered = {}
       for _, diagnostic in ipairs(result.diagnostics) do
         -- 如果错误的 code 是这两个，直接过滤掉，不放入 Neovim 缓冲区

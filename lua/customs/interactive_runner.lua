@@ -3,6 +3,7 @@
 
 local M = {}
 local session = nil
+local algorithm_project = require("customs.algorithm_project")
 local resize_augroup = vim.api.nvim_create_augroup("InteractiveRunner", { clear = true })
 
 local function notify(message, level)
@@ -16,6 +17,10 @@ local function write_lines(path, lines)
 end
 
 local function get_current_file()
+  if not algorithm_project.require_current_buffer() then
+    return nil
+  end
+
   local source = vim.fn.expand("%:p")
   if source == "" or vim.fn.filereadable(source) ~= 1 then
     notify("当前缓冲区没有可编译的文件，请先保存文件。", vim.log.levels.ERROR)
