@@ -5,6 +5,7 @@ return {
             "clangd",
             "marksman",
             "pyright",
+            "ruff",
             "lua_ls",
             "texlab",
             "cmake",

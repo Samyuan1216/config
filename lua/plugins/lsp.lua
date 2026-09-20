@@ -94,6 +94,33 @@ return {
       }
       vim.lsp.enable("pyright")
 
+      -- Ruff provides diagnostics only; Pyright keeps language navigation.
+      vim.lsp.config["ruff"] = {
+        cmd = { "ruff", "server" },
+        filetypes = { "python" },
+        root_markers = { "ruff.toml", ".ruff.toml", "pyproject.toml", "setup.py", "requirements.txt", ".git" },
+        capabilities = capabilities,
+        init_options = {
+          settings = {
+            lint = { enable = true },
+            fixAll = false,
+            organizeImports = false,
+            codeAction = {
+              disableRuleComment = { enable = false },
+              fixViolation = { enable = false },
+            },
+          },
+        },
+        on_attach = function(client, bufnr)
+          client.server_capabilities.hoverProvider = false
+          client.server_capabilities.documentFormattingProvider = false
+          client.server_capabilities.documentRangeFormattingProvider = false
+          client.server_capabilities.codeActionProvider = false
+          on_attach(client, bufnr)
+        end,
+      }
+      vim.lsp.enable("ruff")
+
       -- =================== Lua ===================
       vim.lsp.config["lua_ls"] = {
         cmd = { "lua-language-server" },
