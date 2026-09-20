@@ -23,3 +23,11 @@ vim.api.nvim_create_autocmd("FileType", {
     end)
   end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("PythonTreesitter", { clear = true }),
+  pattern = "python",
+  callback = function(args)
+    vim.treesitter.start(args.buf)
+  end,
+})

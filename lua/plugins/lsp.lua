@@ -77,18 +77,17 @@ return {
       -- =================== Python ===================
       vim.lsp.config["pyright"] = {
         cmd = { "pyright-langserver", "--stdio" },
-        root_markers = { "pyproject.toml", "setup.py", "requirements.txt", ".git" },
+        root_markers = { "pyrightconfig.json", "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile", ".git" },
+        before_init = require("customs.python_env").before_init,
         capabilities = capabilities,
         on_attach = on_attach,
         settings = {
           python = {
-            pythonPath = "/usr/bin/python3",
             analysis = {
               typeCheckingMode = "basic",
               autoSearchPaths = true,
               diagnosticMode = "workspace",
               useLibraryCodeForTypes = true,
-              reportAttributeAccessIssue = "none", -- ⭐ 解决 tf.keras
             },
           },
         },
